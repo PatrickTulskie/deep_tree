@@ -55,19 +55,19 @@ All nodes except for the final leaf must be hashes in order for this to work.  D
 
 These test were run on a MacBook Pro Retina 2.7ghz w/ 16 GB RAM.  Each test was run 200k times.
 
-Good Path
-                       user     system      total        real
-DeepTree::get_leaf  0.550000   0.000000   0.550000 (  0.544478)
-Hash#get_leaf       1.060000   0.010000   1.070000 (  1.067833)
-DeepTree#get_leaf   1.310000   0.020000   1.330000 (  1.332804)
-Hash[] w/ rescue    0.150000   0.010000   0.160000 (  0.158904)
+    Good Path
+                           user     system      total        real
+    DeepTree::get_leaf  0.550000   0.000000   0.550000 (  0.544478)
+    Hash#get_leaf       1.060000   0.010000   1.070000 (  1.067833)
+    DeepTree#get_leaf   1.310000   0.020000   1.330000 (  1.332804)
+    Hash[] w/ rescue    0.150000   0.010000   0.160000 (  0.158904)
 
-Bad Path
-                       user     system      total        real
-DeepTree::get_leaf  0.420000   0.000000   0.420000 (  0.423668)
-Hash#get_leaf       1.060000   0.020000   1.080000 (  1.079373)
-DeepTree#get_leaf   1.320000   0.010000   1.330000 (  1.336181)
-Hash[] w/ rescue    2.800000   0.220000   3.020000 (  3.019637)
+    Bad Path
+                           user     system      total        real
+    DeepTree::get_leaf  0.420000   0.000000   0.420000 (  0.423668)
+    Hash#get_leaf       1.060000   0.020000   1.080000 (  1.079373)
+    DeepTree#get_leaf   1.320000   0.010000   1.330000 (  1.336181)
+    Hash[] w/ rescue    2.800000   0.220000   3.020000 (  3.019637)
 
 So, in the case where the whole path is good, simply chaining together hash calls is the clear winner.  In the event that the path is broken somewhere along the line, DeepTree's solution is at least 2x faster for this extremely contrived example.  Benchmarks are in the benchmarks directory for your viewing pleasure.
 

@@ -1,1 +1,1 @@
-require 'deep_tree/deep_tree'
+require_relative 'deep_tree/deep_tree'

@@ -53,23 +53,27 @@ All nodes except for the final leaf must be hashes in order for this to work.  D
 
 ## Benchmarks
 
-These test were run on a MacBook Pro Retina 2.7ghz w/ 16 GB RAM.  Each test was run 200k times.
+These test were run on a MacBook Pro Retina 2.7ghz w/ 16 GB RAM.  Each test was run 200k times.  Benchmark files are in the benchmarks directory.
 
     Good Path
                            user     system      total        real
-    DeepTree::get_leaf  0.550000   0.000000   0.550000 (  0.544478)
-    Hash#get_leaf       1.060000   0.010000   1.070000 (  1.067833)
-    DeepTree#get_leaf   1.310000   0.020000   1.330000 (  1.332804)
-    Hash[] w/ rescue    0.150000   0.010000   0.160000 (  0.158904)
+    DeepTree::get_leaf  0.260000   0.110000   0.370000 (  0.375624)
+    Hash#get_leaf       0.500000   0.130000   0.630000 (  0.622437)
+    DeepTree#get_leaf   0.600000   0.030000   0.630000 (  0.630710)
+    Hash[] w/ rescue    0.080000   0.010000   0.090000 (  0.094365)
+    Hashie::Mash        4.390000   0.240000   4.630000 (  4.617386)
 
     Bad Path
                            user     system      total        real
-    DeepTree::get_leaf  0.420000   0.000000   0.420000 (  0.423668)
-    Hash#get_leaf       1.060000   0.020000   1.080000 (  1.079373)
-    DeepTree#get_leaf   1.320000   0.010000   1.330000 (  1.336181)
-    Hash[] w/ rescue    2.800000   0.220000   3.020000 (  3.019637)
+    DeepTree::get_leaf  0.210000   0.120000   0.330000 (  0.328618)
+    Hash#get_leaf       0.530000   0.150000   0.680000 (  0.679037)
+    DeepTree#get_leaf   0.620000   0.030000   0.650000 (  0.646792)
+    Hash[] w/ rescue    0.510000   0.050000   0.560000 (  0.567455)
+    Hashie::Mash        6.260000   0.400000   6.660000 (  6.744009)
+    
+So, in the case where the whole path is good, simply chaining together hash calls is the clear winner (but if that was always the case, you wouldn't be here right now).  In the event that the path is broken somewhere along the line, DeepTree's solution is at least 2x faster for this extremely contrived example.  Benchmarks are in the benchmarks directory for your viewing pleasure.
 
-So, in the case where the whole path is good, simply chaining together hash calls is the clear winner.  In the event that the path is broken somewhere along the line, DeepTree's solution is at least 2x faster for this extremely contrived example.  Benchmarks are in the benchmarks directory for your viewing pleasure.
+I recently added Hashie::Mash to the mix here since everyone I showed this to told me that I should try Hashie::Mash.  I have had lots of performance and memory issues with Hashie::Mash in the past and as of the latest version (2.0.5) it doesn't seem to be any better.
 
 ## Contributing
 

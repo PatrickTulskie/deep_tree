@@ -16,4 +16,7 @@ Benchmark.bm do |x|
   x.report('Hash[] w/ rescue  ') do
     $iterations.times { $hash['three_level']['level_two']['level_one'] rescue nil }
   end
+  x.report('Hashie::Mash      ') do
+    $iterations.times { Hashie::Mash.new($hash).three_level.level_two.level_one }
+  end
 end

@@ -10,7 +10,8 @@ Gem::Specification.new do |gem|
   gem.email         = ["patricktulskie@gmail.com"]
   gem.description   = %q{DeepTree simplifies fetching deeply nested nodes in Ruby hashes.}
   gem.summary       = %q{Aids with finding deeply nested nodes in Ruby hashes.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/patricktulskie/deep_tree"
+  gem.licenses      = %w(MIT)
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

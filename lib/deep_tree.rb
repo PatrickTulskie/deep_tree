@@ -1,1 +1,1 @@
-require_relative 'deep_tree/deep_tree'
+require File.join(File.dirname(__FILE__), 'deep_tree', 'deep_tree')

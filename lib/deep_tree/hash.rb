@@ -1,11 +1,5 @@
 class Hash
-  
-  def get_leaf(*args)
-    if block_given?
-      DeepTree.get_leaf(self, *args) { yield }
-    else
-      DeepTree.get_leaf(self, *args)
-    end
+  def get_leaf(*args, &block)
+    DeepTree.get_leaf( self, *args, &block )
   end
-  
 end

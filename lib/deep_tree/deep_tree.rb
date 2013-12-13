@@ -5,15 +5,15 @@ class DeepTree
   
   attr_accessor :tree
   
-  def self.get_leaf(parent, *args)
+  def self.get_leaf(parent, *args, &block)
     args.each_with_index do |key, index|
       result = case
       when index == (args.length - 1)
-        return parent[key].nil? && block_given? ? yield : parent[key]
+        return parent[key].nil? && block ? yield : parent[key]
       when parent[key].is_a?(Hash)
         parent = parent[key]
       else
-        return block_given? ? yield : nil
+        return block ? yield : nil
       end
     end
   end
@@ -26,12 +26,8 @@ class DeepTree
     end
   end
   
-  def get_leaf(*args)
-    if block_given?
-      DeepTree.get_leaf(tree, *args) { yield }
-    else
-      DeepTree.get_leaf(tree, *args)
-    end
+  def get_leaf(*args, &block)
+    DeepTree.get_leaf( tree, *args, &block )
   end
   
   def method_missing(*args)

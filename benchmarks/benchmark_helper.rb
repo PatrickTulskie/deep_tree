@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'bundler'
+require 'require_relative' if RUBY_VERSION =~ /1\.8/
 require 'benchmark'
+
 require_relative '../lib/deep_tree'
 require_relative '../lib/deep_tree/hash'
 

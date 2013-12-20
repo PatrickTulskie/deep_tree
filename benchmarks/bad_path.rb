@@ -1,4 +1,4 @@
-require_relative 'benchmark_helper'
+require File.join(File.dirname(__FILE__), 'benchmark_helper')
 
 bad_path = %w(three_level nope nada)
 

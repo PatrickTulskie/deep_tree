@@ -1,4 +1,4 @@
-require_relative 'benchmark_helper'
+require File.join(File.dirname(__FILE__), 'benchmark_helper')
 
 good_path = %w(three_level level_two level_one)
 
